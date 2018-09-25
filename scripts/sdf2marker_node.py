@@ -63,7 +63,7 @@ def main():
   use_collision = args.collision
 
   global markerPub
-  markerPub = rospy.Publisher('/visualization_marker', Marker, queue_size=10)
+  markerPub = rospy.Publisher('/gazebo2rviz_models_visual', Marker, queue_size=10)
 
   global world
   sdf = pysdf.SDF(model=args.sdf)
