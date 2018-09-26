@@ -44,6 +44,8 @@ def on_model_states_msg(model_states_msg):
     #print(model_idx, modelinstance_name)
     model_name = pysdf.name2modelname(modelinstance_name)
     #print('model_name:', model_name)
+    if model_name == 'ground_plane' or model_name == 'anymal' or model_name == 'dodgeball':   # hardcoded: stuff we don`t want the parser to stream
+      continue
     if not model_name in model_cache:
       sdf = pysdf.SDF(model=model_name)
       model_cache[model_name] = sdf.world.models[0] if len(sdf.world.models) >= 1 else None
