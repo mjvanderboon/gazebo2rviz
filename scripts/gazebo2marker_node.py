@@ -72,7 +72,7 @@ def main():
   submodelsToBeIgnored = rospy.get_param('~ignore_submodels_of', '').split(';')
   rospy.loginfo('Ignoring submodels of: ' + str(submodelsToBeIgnored))
   if submodelsToBeIgnored:
-    rospy.logerr('ignore_submodels_of is currently not supported and will thus have no effect')
+    rospy.loginfo('ignore_submodels_of is currently not supported and will thus have no effect')
 
 
   global updatePeriod
