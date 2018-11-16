@@ -37,10 +37,16 @@ def on_link_states_msg(link_states_msg):
 
   poses = {'gazebo_world': identity_matrix()}
   for (link_idx, link_name) in enumerate(link_states_msg.name):
+    if 'anymal' in link_name or 'dodgeball' in link_name or 'ground_plane' in link_name:   # hardcoded: stuff we don`t want the parser to stream
+      # print('found you again :) ', link_name)
+      continue
     poses[link_name] = pysdf.pose_msg2homogeneous(link_states_msg.pose[link_idx])
     #print('%s:\n%s' % (link_name, poses[link_name]))
 
   for (link_idx, link_name) in enumerate(link_states_msg.name):
+    if 'anymal' in link_name or 'dodgeball' in link_name or 'ground_plane' in link_name:   # hardcoded: stuff we don`t want the parser to stream
+      # print('found you again again :) ', link_name)
+      continue
     #print(link_idx, link_name)
     modelinstance_name = link_name.split('::')[0]
     #print('modelinstance_name:', modelinstance_name)

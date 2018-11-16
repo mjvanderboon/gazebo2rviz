@@ -41,11 +41,12 @@ def on_model_states_msg(model_states_msg):
   lastUpdateTime = rospy.get_rostime()
 
   for (model_idx, modelinstance_name) in enumerate(model_states_msg.name):
-    #print(model_idx, modelinstance_name)
-    model_name = pysdf.name2modelname(modelinstance_name)
-    #print('model_name:', model_name)
-    if model_name == 'ground_plane' or model_name == 'anymal' or model_name == 'dodgeball':   # hardcoded: stuff we don`t want the parser to stream
+    if 'anymal' in modelinstance_name or 'dodgeball' in modelinstance_name or 'ground_plane' in modelinstance_name:   # hardcoded: stuff we don`t want the parser to stream
+      # print('found you :) ', modelinstance_name)
       continue
+    # print(model_idx, modelinstance_name)
+    model_name = pysdf.name2modelname(modelinstance_name)
+    # print('model_name:', model_name)
     if not model_name in model_cache:
       sdf = pysdf.SDF(model=model_name)
       model_cache[model_name] = sdf.world.models[0] if len(sdf.world.models) >= 1 else None
