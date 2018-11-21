@@ -13,7 +13,7 @@ import pysdf
 from gazebo2rviz import *
 
 
-updatePeriod = 0.5
+updatePeriod = 1
 use_collision = False
 submodelsToBeIgnored = []
 markerPub = None

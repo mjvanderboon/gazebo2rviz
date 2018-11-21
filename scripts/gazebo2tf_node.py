@@ -14,7 +14,7 @@ import pysdf
 tfBroadcaster = None
 submodelsToBeIgnored = []
 lastUpdateTime = None
-updatePeriod = 0.05
+updatePeriod = 0.5
 model_cache = {}
 
 
