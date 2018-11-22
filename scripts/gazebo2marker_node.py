@@ -13,7 +13,6 @@ import pysdf
 from gazebo2rviz import *
 
 
-updatePeriod = 1
 use_collision = False
 submodelsToBeIgnored = []
 markerPub = None
@@ -39,7 +38,6 @@ def on_model_states_msg(model_states_msg):
   if sinceLastUpdateDuration.to_sec() < updatePeriod:
     return
   lastUpdateTime = rospy.get_rostime()
-
   for (model_idx, modelinstance_name) in enumerate(model_states_msg.name):
     if 'anymal' in modelinstance_name or 'dodgeball' in modelinstance_name or 'ground_plane' in modelinstance_name:   # hardcoded: stuff we don`t want the parser to stream
       # print('found you :) ', modelinstance_name)
@@ -63,7 +61,7 @@ def on_model_states_msg(model_states_msg):
 
 def main():
   parser = argparse.ArgumentParser()
-  parser.add_argument('-f', '--freq', type=float, default=2, help='Frequency Markers are published (default: 2 Hz)')
+  parser.add_argument('-f', '--freq', type=float, default=2, help='Frequency Markers are published (default: 1 Hz)')
   parser.add_argument('-c', '--collision', action='store_true', help='Publish collision instead of visual elements')
   args = parser.parse_args(rospy.myargv()[1:])
 
@@ -83,8 +81,7 @@ def main():
   use_collision = args.collision
 
   global markerPub
-  markerPub = rospy.Publisher('/gazebo2rviz_models_visual', Marker, queue_size=10)
-  rospy.sleep(rospy.Duration(0, 100 * 1000))
+  markerPub = rospy.Publisher('/gazebo2rviz_models_visual', Marker, queue_size=1)
 
   global lastUpdateTime
   lastUpdateTime = rospy.get_rostime()

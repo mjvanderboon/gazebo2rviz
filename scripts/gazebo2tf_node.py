@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 
+import argparse
 import rospy
 import tf
 from geometry_msgs.msg import Pose
@@ -14,7 +15,6 @@ import pysdf
 tfBroadcaster = None
 submodelsToBeIgnored = []
 lastUpdateTime = None
-updatePeriod = 0.5
 model_cache = {}
 
 
@@ -92,9 +92,16 @@ def on_link_states_msg(link_states_msg):
 def main():
   rospy.init_node('gazebo2tf')
 
+  parser = argparse.ArgumentParser()
+  parser.add_argument('-f', '--freq', type=float, default=2, help='Frequency Markers are published (default: 1 Hz)')
+  args = parser.parse_args(rospy.myargv()[1:])
+
   global submodelsToBeIgnored
   submodelsToBeIgnored = rospy.get_param('~ignore_submodels_of', '').split(';')
   rospy.loginfo('Ignoring submodels of: ' + str(submodelsToBeIgnored))
+
+  global updatePeriod
+  updatePeriod = 1. / args.freq
 
   global tfBroadcaster
   tfBroadcaster = tf.TransformBroadcaster()
