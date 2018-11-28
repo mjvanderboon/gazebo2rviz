@@ -23,7 +23,7 @@ supported_geometry_types = ['mesh', 'cylinder', 'sphere', 'box']
 gazebo_rospack = RosPack()
 
 
-def link2marker_msg(link, full_linkname, use_collision = False, lifetime = rospy.Duration(0)):
+def link2marker_msg(link, full_linkname, use_collision = False):
   marker_msg = None
   linkpart = None
   if use_collision:
@@ -42,7 +42,6 @@ def link2marker_msg(link, full_linkname, use_collision = False, lifetime = rospy
     marker_msg = copy.deepcopy(protoMarkerMsg)
     marker_msg.header.frame_id = pysdf.sdf2tfname(full_linkname)
     marker_msg.header.stamp = rospy.get_rostime()
-    marker_msg.lifetime = lifetime
     marker_msg.ns = pysdf.sdf2tfname(full_linkname + "::" + linkpart.name)
     marker_msg.pose = pysdf.homogeneous2pose_msg(linkpart.pose)
 

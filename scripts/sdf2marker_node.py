@@ -23,7 +23,7 @@ markers = []
 
 
 def prepare_link_marker(link, full_linkname):
-  marker_msg = link2marker_msg(link, full_linkname, use_collision, rospy.Duration(2 * updatePeriod))
+  marker_msg = link2marker_msg(link, full_linkname, use_collision)
   if marker_msg:
     markers.append(marker_msg)
 
