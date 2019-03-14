@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>gazebo2rviz</name>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
   <description>This package contains nodes to automatically import all entities simulated in a ROS-enabled Gazebo instance into rviz through the TF and Marker plugin.</description>
   <maintainer email="andreas.bihlmaier@gmx.de">Andreas Bihlmaier</maintainer>
   <license>MIT</license>
