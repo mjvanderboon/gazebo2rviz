@@ -8,7 +8,8 @@
 
   <license>MIT</license>
   <author email="andreas.bihlmaier@gmx.de">Andreas Bihlmaier</author>
-  <maintainer email="andreas.bihlmaier@gmx.de">Andreas Bihlmaier</maintainer>
+  <maintainer email="rdiethelm@anybotics.com">Remo Diethelm</maintainer>
+  <maintainer email="pleemann@anybotics.com">Philipp Leemann</maintainer>
   <url type="website">http://wiki.ros.org/gazebo2rviz</url>
 
   <buildtool_depend>catkin</buildtool_depend>
